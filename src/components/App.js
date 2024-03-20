@@ -12,6 +12,7 @@ import Timer from "./Timer";
 import Footer from "./Footer";
 
 const SECS_PER_QUESTION = 30;
+const BASE_URL = window.location.host;
 
 const initialState = {
 	questions: [],
@@ -106,7 +107,7 @@ export default function App() {
 	);
 
 	useEffect(function () {
-		fetch("http://localhost:8000/questions")
+		fetch(`${BASE_URL}/questions`)
 			.then((res) => res.json())
 			.then((data) => dispatch({ type: "dataReceived", payload: data }))
 			.catch((err) => dispatch({ type: "dataFailed" }));
